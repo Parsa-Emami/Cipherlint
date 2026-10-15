@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:parsa-security:cipherlint:config:v1",
+  "title": "CipherLint Configuration v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "APP_ENV": {
+      "type": "string",
+      "enum": [
+        "local",
+        "test",
+        "staging",
+        "production"
+      ]
+    },
+    "SERVICE_NAME": {
+      "type": "string",
+      "const": "cipherlint"
+    },
+    "DATABASE_DSN_REF": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Secret/reference URI; never embed production credentials in config."
+    },
+    "VALKEY_DSN_REF": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Secret/reference URI; never embed production credentials in config."
+    },
+    "OTEL_EXPORTER_OTLP_ENDPOINT": {
+      "type": "string",
+      "format": "uri"
+    },
+    "LOG_LEVEL": {
+      "type": "string",
+      "enum": [
+        "debug",
+        "info",
+        "warning",
+        "error"
+      ]
+    },
+    "SERVER_MODE": {
+      "type": "string",
+      "minLength": 1
+    },
+    "SOURCE_SNAPSHOT_STORAGE": {
+      "type": "string",
+      "minLength": 1
+    },
+    "MAX_SOURCE_BYTES": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "RULEPACK_PATH": {
+      "type": "string",
+      "minLength": 1
+    },
+    "SARIF_VERSION": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "APP_ENV",
+    "SERVICE_NAME",
+    "OTEL_EXPORTER_OTLP_ENDPOINT"
+  ]
+}

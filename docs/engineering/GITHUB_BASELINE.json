@@ -1,0 +1,13 @@
+{
+  "repository": "Parsa-Emami/Cipherlint",
+  "reviewed_commit": "a914c494da3d17bc8691c471ecd68cb4caed46fc",
+  "existing_file_count": 78,
+  "existing_runtime": "architecture scaffold only",
+  "protected_files_sha256": {
+    ".env.example": "f1482d641559ffa0980360fbfc466d4b42b36d85af5535a88845f2eebdd76fee"
+  },
+  "skipped_input_archival_config_paths": [
+    "legacy/v7/.env.example"
+  ],
+  "preservation": "All existing protected files remain at their original paths with identical bytes. Supplied archival env duplicates were omitted to avoid creating extra config files."
+}

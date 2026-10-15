@@ -1,0 +1,41 @@
+{
+  "version": "0",
+  "project": "CipherLint",
+  "status": "web_foundation",
+  "primary_mode": "web-viewer-private-engine",
+  "domain_profile": {
+    "public_demo": "synthetic-only",
+    "admit_untrusted_runtime_jobs": false,
+    "enable_sensitive_data_upload_by_default": false,
+    "https_required": true
+  },
+  "private_profile": {
+    "single_owner": true,
+    "persistent_local_volume": false,
+    "use_external_database_service": false,
+    "providers": [
+      "Rust CLI",
+      "Tree-sitter grammars",
+      "Project-owned crypto rules",
+      "Static TypeScript findings viewer"
+    ]
+  },
+  "capacity_targets": {
+    "source_file_max_mib": 2,
+    "total_source_max_mib": 100,
+    "file_count": 10000,
+    "deadline_seconds": 120
+  },
+  "measured": false,
+  "engine_mode": "file-cli",
+  "web": {
+    "artifact": "dist/release",
+    "listen": "127.0.0.1",
+    "port": 4306,
+    "https_proxy": "ops/web/nginx.conf.template",
+    "service": "ops/web/service.systemd",
+    "engine_enabled": false,
+    "private_admission": "deny-all until operator sets trusted network ranges",
+    "offline": false
+  }
+}

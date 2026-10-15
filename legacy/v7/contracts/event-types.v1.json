@@ -1,0 +1,15 @@
+{
+  "project": "CipherLint",
+  "envelope": "CloudEvents-compatible 1.0 profile",
+  "delivery": "at-least-once",
+  "ordering": "not globally guaranteed; per-aggregate sequencing when documented",
+  "deduplication": "required by event id",
+  "types": [
+    "scan.started.v1",
+    "scan.completed.v1",
+    "finding.detected.v1",
+    "finding.triaged.v1",
+    "rulepack.updated.v1",
+    "baseline.created.v1"
+  ]
+}

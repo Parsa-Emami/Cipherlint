@@ -1,0 +1,19 @@
+{
+  "project": "CipherLint",
+  "failures": [
+    "malformed syntax",
+    "parser panic corpus",
+    "recursive archive",
+    "symlink escape",
+    "huge generated file",
+    "rule timeout",
+    "unsupported syntax",
+    "version mismatch"
+  ],
+  "required_result": [
+    "invariants preserved",
+    "observable failure",
+    "bounded retries",
+    "recovery/reconciliation succeeds"
+  ]
+}
