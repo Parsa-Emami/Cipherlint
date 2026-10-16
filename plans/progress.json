@@ -290,5 +290,7 @@
     "base_commit": "a914c494da3d17bc8691c471ecd68cb4caed46fc",
     "backend": null,
     "backend_tests": "not_implemented"
-  }
+  },
+  "roadmap_contract": "clone-to-run-oss-v1",
+  "current_core_ready": false
 }

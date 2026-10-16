@@ -1,0 +1,35 @@
+{
+  "project": "CipherLint",
+  "status": "planned acceptance contract; not executed domain proof",
+  "input": "repository-authored synthetic licensed fixtures",
+  "steps": [
+    "Install CLI",
+    "scan positive/negative crypto fixtures",
+    "check stable IDs",
+    "produce SARIF",
+    "load report locally in viewer",
+    "confirm no source network transmission."
+  ],
+  "expected_invariants": [
+    "No source execution",
+    "Deterministic finding IDs",
+    "Unsupported syntax and incomplete scan are explicit"
+  ],
+  "negative_uat": [
+    "روی fixture crypto ناامن نتیجهٔ توضیح‌دار و روی نمونهٔ اصلاح‌شده نتیجهٔ مناسب بدهد",
+    "SARIF در CI خوانده شود و finding IDs با اجرای مجدد ثابت بمانند",
+    "source هیچ‌وقت اجرا یا به دامنهٔ viewer ارسال نشود"
+  ],
+  "clean_host_commands": [
+    "git clone https://github.com/Parsa-Emami/Cipherlint.git",
+    "cd Cipherlint",
+    "npm run setup",
+    "npm start"
+  ],
+  "requires_at_C30": [
+    "real engine and required local providers",
+    "the entire workflow",
+    "restart and restore",
+    "no paid/cloud account or sibling clone"
+  ]
+}
