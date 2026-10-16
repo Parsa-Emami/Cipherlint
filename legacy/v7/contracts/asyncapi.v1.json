@@ -1,0 +1,234 @@
+{
+  "asyncapi": "3.1.0",
+  "id": "urn:parsa-security:cipherlint:events:v1",
+  "info": {
+    "title": "CipherLint Events",
+    "version": "1.0.0",
+    "description": "Canonical application event contract. Delivery is at-least-once; consumers must be idempotent and deduplicate by event id."
+  },
+  "defaultContentType": "application/json",
+  "channels": {
+    "event_scan_started_v1": {
+      "address": "scan.started.v1",
+      "messages": {
+        "ScanStartedV1Message": {
+          "$ref": "#/components/messages/ScanStartedV1Message"
+        }
+      }
+    },
+    "event_scan_completed_v1": {
+      "address": "scan.completed.v1",
+      "messages": {
+        "ScanCompletedV1Message": {
+          "$ref": "#/components/messages/ScanCompletedV1Message"
+        }
+      }
+    },
+    "event_finding_detected_v1": {
+      "address": "finding.detected.v1",
+      "messages": {
+        "FindingDetectedV1Message": {
+          "$ref": "#/components/messages/FindingDetectedV1Message"
+        }
+      }
+    },
+    "event_finding_triaged_v1": {
+      "address": "finding.triaged.v1",
+      "messages": {
+        "FindingTriagedV1Message": {
+          "$ref": "#/components/messages/FindingTriagedV1Message"
+        }
+      }
+    },
+    "event_rulepack_updated_v1": {
+      "address": "rulepack.updated.v1",
+      "messages": {
+        "RulepackUpdatedV1Message": {
+          "$ref": "#/components/messages/RulepackUpdatedV1Message"
+        }
+      }
+    },
+    "event_baseline_created_v1": {
+      "address": "baseline.created.v1",
+      "messages": {
+        "BaselineCreatedV1Message": {
+          "$ref": "#/components/messages/BaselineCreatedV1Message"
+        }
+      }
+    }
+  },
+  "operations": {
+    "send_scan_started_v1": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/event_scan_started_v1"
+      },
+      "messages": [
+        {
+          "$ref": "#/channels/event_scan_started_v1/messages/ScanStartedV1Message"
+        }
+      ]
+    },
+    "send_scan_completed_v1": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/event_scan_completed_v1"
+      },
+      "messages": [
+        {
+          "$ref": "#/channels/event_scan_completed_v1/messages/ScanCompletedV1Message"
+        }
+      ]
+    },
+    "send_finding_detected_v1": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/event_finding_detected_v1"
+      },
+      "messages": [
+        {
+          "$ref": "#/channels/event_finding_detected_v1/messages/FindingDetectedV1Message"
+        }
+      ]
+    },
+    "send_finding_triaged_v1": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/event_finding_triaged_v1"
+      },
+      "messages": [
+        {
+          "$ref": "#/channels/event_finding_triaged_v1/messages/FindingTriagedV1Message"
+        }
+      ]
+    },
+    "send_rulepack_updated_v1": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/event_rulepack_updated_v1"
+      },
+      "messages": [
+        {
+          "$ref": "#/channels/event_rulepack_updated_v1/messages/RulepackUpdatedV1Message"
+        }
+      ]
+    },
+    "send_baseline_created_v1": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/event_baseline_created_v1"
+      },
+      "messages": [
+        {
+          "$ref": "#/channels/event_baseline_created_v1/messages/BaselineCreatedV1Message"
+        }
+      ]
+    }
+  },
+  "components": {
+    "messages": {
+      "ScanStartedV1Message": {
+        "name": "scan.started.v1",
+        "title": "scan.started.v1",
+        "payload": {
+          "$ref": "#/components/schemas/EventEnvelope"
+        }
+      },
+      "ScanCompletedV1Message": {
+        "name": "scan.completed.v1",
+        "title": "scan.completed.v1",
+        "payload": {
+          "$ref": "#/components/schemas/EventEnvelope"
+        }
+      },
+      "FindingDetectedV1Message": {
+        "name": "finding.detected.v1",
+        "title": "finding.detected.v1",
+        "payload": {
+          "$ref": "#/components/schemas/EventEnvelope"
+        }
+      },
+      "FindingTriagedV1Message": {
+        "name": "finding.triaged.v1",
+        "title": "finding.triaged.v1",
+        "payload": {
+          "$ref": "#/components/schemas/EventEnvelope"
+        }
+      },
+      "RulepackUpdatedV1Message": {
+        "name": "rulepack.updated.v1",
+        "title": "rulepack.updated.v1",
+        "payload": {
+          "$ref": "#/components/schemas/EventEnvelope"
+        }
+      },
+      "BaselineCreatedV1Message": {
+        "name": "baseline.created.v1",
+        "title": "baseline.created.v1",
+        "payload": {
+          "$ref": "#/components/schemas/EventEnvelope"
+        }
+      }
+    },
+    "schemas": {
+      "EventEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "specversion",
+          "id",
+          "source",
+          "type",
+          "time",
+          "subject",
+          "data"
+        ],
+        "properties": {
+          "specversion": {
+            "type": "string",
+            "const": "1.0"
+          },
+          "id": {
+            "type": "string",
+            "minLength": 16
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "scan.started.v1",
+              "scan.completed.v1",
+              "finding.detected.v1",
+              "finding.triaged.v1",
+              "rulepack.updated.v1",
+              "baseline.created.v1"
+            ]
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "traceparent": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "datacontenttype": {
+            "type": "string",
+            "const": "application/json"
+          },
+          "data": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}

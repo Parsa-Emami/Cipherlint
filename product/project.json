@@ -1,0 +1,111 @@
+{
+  "folder": "06-cipherlint",
+  "name": "CipherLint",
+  "rank": 2,
+  "score": 8.0,
+  "verdict": "گزینهٔ خوب برای انتشار CLI؛ پوشش زبان و false positive را محدود و قابل‌اثبات نگه دار.",
+  "user": "توسعه‌دهنده و reviewer کد با نگرانی رمزنگاری",
+  "pain": "استفادهٔ نادرست از crypto میان هش، RNG، nonce و TLS به‌سختی توضیح داده می‌شود",
+  "value": "یافتن الگوهای محدود crypto با دلیل و راه اصلاح در CI",
+  "wedge": "قاعده‌های دقیق و context-aware برای PHP و Python؛ source روی دستگاه کاربر می‌ماند",
+  "alternatives": "Semgrep، CodeQL و linters زبان",
+  "source_ids": [
+    "semgrep"
+  ],
+  "mvp": [
+    "Rust CLI برای PHP/Python subset مستند",
+    "قواعد نسخه‌دار CryptoIR و fixture",
+    "JSON/SARIF و exit code مشخص",
+    "viewer روی دامنه برای report محلی"
+  ],
+  "later": [
+    "تحلیل interprocedural کامل",
+    "اسکن عمومی ZIP روی سرور",
+    "IDE extension مستقل",
+    "پشتیبانی ده‌ها زبان"
+  ],
+  "stack": [
+    "Rust CLI",
+    "Tree-sitter grammars",
+    "Project-owned crypto rules",
+    "Static TypeScript findings viewer"
+  ],
+  "mode": "web-viewer-private-engine",
+  "stores": {
+    "Filesystem": "source stays local; config, baselines, SARIF and rule packs",
+    "Memory": "bounded AST/IR per scan",
+    "Server": "static report viewer only; no source upload"
+  },
+  "removed": [
+    "Laravel",
+    "PostgreSQL",
+    "S3 source storage",
+    "server telemetry dependency"
+  ],
+  "limits": {
+    "source_file_max_mib": 2,
+    "total_source_max_mib": 100,
+    "file_count": 10000,
+    "deadline_seconds": 120
+  },
+  "hardware": "CLI هدف 2 vCPU / 2 GiB RAM؛ viewer static. Native binary release برای Linux/macOS/Windows جدا تست شود.",
+  "weeks": "6–10 هفته",
+  "risks": [
+    "نمی‌توان از صفر finding نتیجهٔ امن‌بودن گرفت",
+    "parser و dataflow محدود false negative دارند",
+    "قواعد crypto باید usage context را از صرف نام الگوریتم جدا کنند"
+  ],
+  "uat": [
+    "روی fixture crypto ناامن نتیجهٔ توضیح‌دار و روی نمونهٔ اصلاح‌شده نتیجهٔ مناسب بدهد",
+    "SARIF در CI خوانده شود و finding IDs با اجرای مجدد ثابت بمانند",
+    "source هیچ‌وقت اجرا یا به دامنهٔ viewer ارسال نشود"
+  ],
+  "domain": {
+    "primary": "scan-result",
+    "fields": {
+      "scan_id": "id",
+      "source_digest": "hash",
+      "rule_pack_digest": "hash",
+      "engine_version": "text",
+      "findings": "array",
+      "coverage": "object"
+    },
+    "invariants": [
+      "No source execution",
+      "Deterministic finding IDs",
+      "Unsupported syntax and incomplete scan are explicit"
+    ]
+  },
+  "version": "0.0.0",
+  "status": "WEB_FOUNDATION",
+  "source_implemented": true,
+  "market_validation": "UNVALIDATED",
+  "assumption": "Browser application first; optional CLI/worker remains an engine adapter. Web foundation does not satisfy domain release gates.",
+  "engine_implemented": false,
+  "previous_engine_mode": "file-cli",
+  "web_application": {
+    "status": "foundation_implemented",
+    "deployment_profile": "web-viewer-private-engine",
+    "frontend": "React + TypeScript + Vite",
+    "web_runtime": "Node.js static shell; no engine proxy",
+    "default_engine_enabled": false,
+    "preview_storage": "tab memory only",
+    "offline_supported": false,
+    "engine_status": "planned",
+    "source": "apps/web/src/main.tsx",
+    "existing_backend": null
+  },
+  "web_version": "0.0.1",
+  "open_source": {
+    "license": "Apache-2.0",
+    "core_paid_account_required": false,
+    "owned_domain_required": false,
+    "sibling_clone_required": false,
+    "setup": "npm run setup",
+    "start": "npm start",
+    "usable_at": "C30",
+    "complete_v1_at": "C40",
+    "core_ready": false,
+    "architecture": "docs/architecture/ADR-0003-open-source-local-first.md"
+  }
+}

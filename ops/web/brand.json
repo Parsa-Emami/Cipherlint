@@ -1,0 +1,7 @@
+{
+  "slug": "cipherlint",
+  "name": "CipherLint",
+  "title": "Inspect cryptography with context.",
+  "description": "A browser workspace for deterministic findings, explicit coverage and actionable review.",
+  "accent": "#f3b192"
+}

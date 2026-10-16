@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:parsa:cipherlint:input:0",
+  "title": "scan-result planning draft",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "scan_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "source_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "rule_pack_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "engine_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "findings": {
+      "type": "array",
+      "maxItems": 100000,
+      "items": {
+        "type": "object"
+      }
+    },
+    "coverage": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "scan_id",
+    "source_digest",
+    "rule_pack_digest",
+    "engine_version",
+    "findings",
+    "coverage"
+  ]
+}
